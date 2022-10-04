@@ -1,5 +1,5 @@
 {
-  "name": "@husam287/next-templete",
+  "name": "@husam287/nextjs-template",
   "version": "0.0.1",
   "scripts": {
     "dev": "next dev",
