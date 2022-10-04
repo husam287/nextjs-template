@@ -22,16 +22,13 @@ export const appSlice = createSlice({
         setDangerToast: (state, action) => {
             state.toast = { type: 'danger', message: action.payload }
         },
-        hideToast: () => {
+        hideToast: (state) => {
             state.toast = null
-        },
-        setIsSignupCase: (state, action) => {
-            state.isSignupCase = action.payload
         }
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { showLoader, hideLoader, setSuccessToast, setDangerToast, hideToast, setIsSignupCase } = appSlice.actions
+export const { showLoader, hideLoader, setSuccessToast, setDangerToast, hideToast } = appSlice.actions
 
 export default appSlice.reducer

@@ -1,2 +1,2 @@
-const DomainUrl = 'https://api-benchmark.bit68.com';
+const DomainUrl = 'https://api-zak.bit68.com';
 export default DomainUrl;

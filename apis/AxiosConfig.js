@@ -3,10 +3,8 @@ import DomainUrl from "./Domain";
 //import { store } from "../redux/store";
 //import { hideLoader, showLoader } from "../redux/actions/AppActions";
 
-const lang = localStorage.getItem('lang')
-
 const _axios = axios.create({
-  baseURL: `${DomainUrl}/${lang}/api`,
+  baseURL: `${DomainUrl}/api`,
 })
 
 _axios.interceptors.request.use(

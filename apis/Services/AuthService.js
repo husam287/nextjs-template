@@ -9,7 +9,7 @@ const nonUserHeader = {
   headers: {
     Authorization: undefined,
   },
-};
+}
 export class AuthServices {
   /**
    *
@@ -18,8 +18,8 @@ export class AuthServices {
    * @param {string} values.password
    * @returns {Promise<TokenObj>}
    */
-  static login(values, locale) {
-    return _axios.post(`${locale}/api/users/login/`, values);
+  static login(values) {
+    return _axios.post(`/users/login/`, values);
   }
 
   /**
@@ -32,9 +32,8 @@ export class AuthServices {
    * @param {string} values.password
    * @returns {Promise<TokenObj>}
    */
-  static EditProfile(values, locale) {
-    // console.log("userdata_here",values)
-    return _axios.put(`${locale}/api/users/me/`, values);
+  static EditProfile(values) {
+    return _axios.put(`/users/me/`, values);
   }
 
   /**
@@ -49,40 +48,8 @@ export class AuthServices {
    *
    * @returns {Promise<TokenObj>}
    */
-  static signup(values, locale) {
-    return _axios.post(`${locale}/api/users/me/`, values, nonUserHeader);
+  static signup(values) {
+    return _axios.post(`/users/me/`, values, nonUserHeader);
   }
 
-  /**
-   *
-   * @param {Object} values
-   * @param {string} values.email
-   * @param {string} values.code verification Code sent to user email
-   * @returns {Promise}
-   */
-  static verifyEmail(values, locale) {
-    return _axios.post(`${locale}/api/users/email/verify_email/`, values);
-  }
-
-  /**
-   *
-   * @param {Object} values
-   * @param {string} values.email
-   * @param {string} values.code verification Code sent to user email
-   * @returns {Promise}
-   */
-  static resendVerificationCode(values, locale) {
-    return _axios.post(
-      `${locale}/api/users/email/resend_verification_code/`,
-      values
-    );
-  }
-
-  static faceLogin(values, locale) {
-    return _axios.post(`${locale}/api/auth/facebook/`, values);
-  }
-  static GoogleLogin(values, locale) {
-    return _axios.post(`${locale}/api/auth/google/`, values);
-  }
-  
 }

@@ -1,12 +1,7 @@
-import { setToast } from "../redux/actions/AppActions"
-import { store } from "../redux/store"
+import { store } from "../redux"
+import { setSuccessToast } from "../redux/appReducer"
 
 export default function showSuccessMsg(msg) {
-    store.dispatch(
-        setToast({
-            toastMsg: msg,
-            toastType: 'success',
-        })
-    )
+    store.dispatch(setSuccessToast(msg))
     return null
 }

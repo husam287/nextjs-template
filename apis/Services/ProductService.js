@@ -16,25 +16,21 @@ export class ProductServices {
    *
    * @returns {Promise<{count:Number, results:any[]}>}
    */
-  static getProducts(
-    locale,
-    {
-      brand = "",
-      color = "",
-      top_rated = "",
-      most_popular = "",
-      category_slug = "",
-      sub_category_slug = "",
-      search = "",
-      page = 1,
-      fragrance_family = "",
-      ordering = "",
-      page_size = 6,
-      ...otherProps
-    } = {}
-  ) {
-    // console.log('????',ordering,fragrance_family,category_slug);
-    return _axios.get(`${locale}/api/products/`, {
+  static getProducts({
+    brand = "",
+    color = "",
+    top_rated = "",
+    most_popular = "",
+    category_slug = "",
+    sub_category_slug = "",
+    search = "",
+    page = 1,
+    fragrance_family = "",
+    ordering = "",
+    page_size = 6,
+    ...otherProps
+  } = {}) {
+    return _axios.get(`/products/`, {
       params: {
         brand,
         color,
@@ -49,47 +45,10 @@ export class ProductServices {
         page_size,
         new: otherProps?.new
       },
-    });
+    })
   }
 
-  /**
-   *
-   * @param {string} slug
-   * @returns {Promise<>}
-   */
-  static getProductDetails(locale, slug) {
-    return _axios.get(`${locale}/api/products/${slug}`);
-  }
-
-  static getCategories(locale) {
-    return _axios.get(`${locale}/api/categories/`);
-  }
-  static getfavorite(locale) {
-    return _axios.get(`${locale}/api/user_wish_lists/`);
-  }
-
-  static getCategory(locale, slug) {
-    return _axios.get(`${locale}/api/categories/${slug}`);
-  }
-  static getofferDetails(locale, slug) {
-    return _axios.get(`${locale}/api/offers/${slug}/`);
-  }
-  // static FilterProducts(locale,params) {
-  //   return _axios.get(`${locale}/api/products/`,{params:params});
-  // }
-  /**
-   *
-   * @param {Object} data
-   * @param {string} data.review comment
-   * @param {(1|2|3|4|5)} data.rating rating out of 5
-   * @param {number} data.product product id
-   * @returns
-   */
-  static makeReview(locale, { review, rating, product }) {
-    return _axios.post(`${locale}/api/product_reviews/`, {
-      review,
-      rating,
-      product,
-    });
+  static getCategories() {
+    return _axios.get(`/categories/`);
   }
 }

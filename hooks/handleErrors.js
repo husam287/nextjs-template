@@ -1,22 +1,15 @@
-import { setToast } from '../redux/actions/AppActions'
-import { logout } from '../redux/actions/AuthActions'
-import { store } from '../redux/store'
+import { store } from "../redux"
+import { setDangerToast } from "../redux/appReducer"
+import { logoutHandler } from "./logoutHandler"
 
 export default function HandleErrors(err) {
     //Showing Toast Function
     const showErrorToast = (msg) => {
-        store.dispatch(
-            setToast({
-                toastMsg: msg,
-                toastType: 'error',
-            })
-        )
+        store.dispatch(setDangerToast(msg))
     }
 
     if (err?.code?.includes('token_not_valid')) {
-        store.dispatch(
-            logout()
-        )
+        logoutHandler()
     }
 
     console.log("errdata", err)

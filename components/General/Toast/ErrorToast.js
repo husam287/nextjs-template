@@ -9,6 +9,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
         <MuiAlert
             sx={{
                 fontFamily: 'Poppins-Bold',
+                border:'none',
                 '& .MuiAlert-icon': {
                     marginRight: 0,
                     marginInlineEnd: '12px'
@@ -24,7 +25,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 
 const ErrorToast = () => {
     const errorMsg = useSelector(state => state.app.toastMsg)?.message
-    const isError = useSelector(state => state.app.toastType)?.type === 'error'
+    const isError = useSelector(state => state.app.toast)?.type === 'error'
     const dispatch = useDispatch()
 
     useEffect(() => {
