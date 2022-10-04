@@ -1,7 +1,7 @@
 {
-  "name": "next-templete",
-  "version": "0.1.0",
-  "private": true,
+  "name": "@husam287/next-templete",
+  "version": "0.0.1",
+  "private": false,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
