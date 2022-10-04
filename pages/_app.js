@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import 'bootstrap/dist/css/bootstrap.css'
-import '../styles/globals.css'
+import 'antd/dist/antd.css';
+import '../styles/globals.scss'
 import { ImportantVars } from '../constants/ImportantVars'
 
 function MyApp({ Component, pageProps }) {
