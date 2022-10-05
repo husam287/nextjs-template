@@ -1,7 +1,10 @@
-@import './variables/fonts.scss';
+@import './variables/root';
+@import './variables/fonts';
+@import './variables/colors';
+
 
 * {
-  font-family: "Poppins-Regular" !important;
+  font-family: --var(--ff-bold) !important;
 }
 
 .pointer {

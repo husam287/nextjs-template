@@ -1,4 +1,7 @@
 import { Typography } from "@mui/material";
+import { fontSize } from "@mui/system";
+import { Colors } from "constants/Colors";
+import { FontFamily } from "constants/FontFamily";
 import { useTranslation } from "next-i18next";
 
 const Text = ({
@@ -8,12 +11,18 @@ const Text = ({
     variant = 'h5',
     dontWrap = false,
     onClickAction = () => { },
-    children
+    children,
+    fontFamily = FontFamily.regular,
+    fontSize = 12,
+    color = Colors.primary
 }) => {
     const { t } = useTranslation(["common"]);
 
     return (
         <Typography
+            color={color}
+            fontSize={`'var(--fs-${fontSize})'`}
+            fontFamily={fontFamily}
             onClick={onClickAction}
             gutterBottom={mBottom}
             noWrap={dontWrap}
