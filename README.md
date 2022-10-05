@@ -18,7 +18,7 @@ It's easy to create a project, strip out the few components included, and still 
 ## Usage
 
 ```bash
-npx create-next-app *your project name* --example "https://github.com/husam287/nextjs-templete"
+npx create-next-app *your project name* --example "https://github.com/husam287/nextjs-template"
 ```
 
 First, run the development server:
