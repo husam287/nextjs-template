@@ -4,7 +4,7 @@ A Nextjs template with the following features:
 
 -   Support SCSS
 -   Support Redux toolkit
--   Axios
+-   Axios with supporting multilang ({domainName}/{lang}/api)
 -   Next-i18n supporting English and Arabic languages
 -   Simple project structure
 -   Small component library to get started with

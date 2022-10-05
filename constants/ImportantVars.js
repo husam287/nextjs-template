@@ -1,4 +1,4 @@
 export const ImportantVars = {
-    websiteName: "RED",
-    websiteDescription: "RED website is a website to buy your property"
+    websiteName: "Website name",
+    websiteDescription: "Website description"
 }

@@ -1,32 +1,33 @@
 import axios from "axios";
+import { getCookie } from "cookies-next";
 import DomainUrl from "./Domain";
 //import { store } from "../redux/store";
 //import { hideLoader, showLoader } from "../redux/actions/AppActions";
 
 const _axios = axios.create({
-  baseURL: `${DomainUrl}/api`,
+  headers: {
+    "content-type": "application/json",
+    "Accept": "application/json",
+  }
 })
 
 _axios.interceptors.request.use(
   async (config) => {
     //store.dispatch(showLoader())
 
-    /** Adjust request */
-    if (typeof window === "undefined") {
-      config.headers = {
-        "content-type": "application/json",
-        Accept: "application/json",
-        ...config.headers,
-      }
-    } else {
+    //adjust language
+    let lang = getCookie('lang')
+    config.baseURL = `${DomainUrl}/${lang}/api`
+
+    /** Adding token */
+    if (typeof window !== "undefined") {
       const token = localStorage.getItem("token");
       config.headers = {
         Authorization: token ? `Token ${token}` : undefined,
-        "content-type": "application/json",
-        Accept: "application/json",
         ...config.headers,
       }
     }
+
     return config;
   },
   (err) => {
