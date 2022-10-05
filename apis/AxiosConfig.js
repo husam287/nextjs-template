@@ -1,50 +1,58 @@
 import axios from "axios";
-import { getCookie } from "cookies-next";
 import DomainUrl from "./Domain";
 //import { store } from "../redux/store";
 //import { hideLoader, showLoader } from "../redux/actions/AppActions";
 
-const _axios = axios.create({
-  headers: {
-    "content-type": "application/json",
-    "Accept": "application/json",
-  }
-})
-
-_axios.interceptors.request.use(
-  async (config) => {
-    //store.dispatch(showLoader())
-
-    //adjust language
-    let lang = getCookie('lang')
-    config.baseURL = `${DomainUrl}/${lang}/api`
-
-    /** Adding token */
+export const getAxiosInstance = (locale) => {
+  let language = locale
+  if (!language) {
     if (typeof window !== "undefined") {
-      const token = localStorage.getItem("token");
-      config.headers = {
-        Authorization: token ? `Token ${token}` : undefined,
-        ...config.headers,
-      }
+      const storedLang = localStorage.getItem("lang");
+      language = storedLang
     }
-
-    return config;
-  },
-  (err) => {
-    //store.dispatch(hideLoader())
-    return Promise.reject(err?.response?.data);
+    else
+      language = 'en'
   }
-);
 
-_axios.interceptors.response.use(
-  (response) => {
-    // store.dispatch(hideLoader())
-    return response.data;
-  },
-  (err) => {
-    // store.dispatch(hideLoader())
-    if (err?.response?.data) return Promise.reject(err?.response?.data);
-  }
-)
+  const _axios = axios.create({
+    baseURL: `${DomainUrl}/${language}/api`,
+    headers: {
+      "content-type": "application/json",
+      "Accept": "application/json",
+    }
+  })
 
-export default _axios;
+  _axios.interceptors.request.use(
+    async (config) => {
+      //store.dispatch(showLoader())
+
+      /** Adding token */
+      if (typeof window !== "undefined") {
+        const token = localStorage.getItem("token");
+        config.headers = {
+          Authorization: token ? `Token ${token}` : undefined,
+          ...config.headers,
+        }
+      }
+
+      return config;
+    },
+    (err) => {
+      //store.dispatch(hideLoader())
+      return Promise.reject(err?.response?.data);
+    }
+  )
+
+  _axios.interceptors.response.use(
+    (response) => {
+      // store.dispatch(hideLoader())
+      return response.data;
+    },
+    (err) => {
+      // store.dispatch(hideLoader())
+      if (err?.response?.data) return Promise.reject(err?.response?.data);
+    }
+  )
+
+  return _axios
+}

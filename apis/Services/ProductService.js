@@ -1,8 +1,9 @@
-import _axios from "../AxiosConfig";
+import { getAxiosInstance } from "apis/AxiosConfig";
 
 export class ProductServices {
   /**
-   *
+   * 
+   * @param {'ar'|'en'} locale 
    * @param {Object} values
    * @param {string} values.brand brand slugs separated by commas
    * @param {string} values.color
@@ -16,39 +17,18 @@ export class ProductServices {
    *
    * @returns {Promise<{count:Number, results:any[]}>}
    */
-  static getProducts({
-    brand = "",
-    color = "",
-    top_rated = "",
-    most_popular = "",
-    category_slug = "",
-    sub_category_slug = "",
-    search = "",
-    page = 1,
-    fragrance_family = "",
-    ordering = "",
-    page_size = 6,
-    ...otherProps
-  } = {}) {
-    return _axios.get(`/products/`, {
-      params: {
-        brand,
-        color,
-        top_rated,
-        most_popular,
-        category_slug,
-        sub_category_slug,
-        fragrance_family,
-        ordering,
-        search,
-        page,
-        page_size,
-        new: otherProps?.new
-      },
+  static getProducts(locale, values) {
+    return getAxiosInstance(locale).get(`/products/`, {
+      params: values
     })
   }
 
-  static getCategories() {
-    return _axios.get(`/categories/`);
+  /**
+   * 
+   * @param {'ar'|'en'} locale 
+   * @returns 
+   */
+  static getCategories(locale) {
+    return getAxiosInstance(locale).get(`/categories/`);
   }
 }

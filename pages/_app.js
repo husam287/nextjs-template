@@ -4,7 +4,6 @@ import 'styles/globals.scss'
 import { Provider } from 'react-redux';
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { CacheProvider } from "@emotion/react";
-import { setCookie } from 'cookies-next'
 import MainLayout from 'components/General/MainLayout';
 import { theme } from "styles/theme";
 import createEmotionCache from "hooks/createEmotionCache";
@@ -27,7 +26,6 @@ function MyApp({ Component, pageProps }) {
 
   const langAdjustment = () => {
     localStorage.setItem('lang', router.locale)
-    setCookie('lang', router.locale)
 
     let isArabicLang = router.locale === "ar"
     let dir = isArabicLang ? "rtl" : "ltr"
