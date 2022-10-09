@@ -19,6 +19,7 @@
     --fs-21: clamp(21px, 5.600vw, 23px);
     --fs-22: clamp(22px, 5.867vw, 24px);
     --fs-23: clamp(23px, 6.133vw, 25px);
+    --fs-24: clamp(24px, 6.4vw, 26px);
     --fs-26: clamp(26px, 6.933vw, 28px);
     --fs-28: clamp(28px, 7.467vw, 30px);
     --fs-30: clamp(30px, 8vw, 32px);
@@ -26,4 +27,12 @@
     --fs-37: clamp(37px, 9.867vw, 39px);
     --fs-40: clamp(40px, 10.667vw, 42px);
     --fs-48: clamp(48px, 12.800vw, 50px);
+
+    /* FONT FAMILY */
+    --ff-regular: "Poppins-Regular";
+    --ff-medium: "Poppins-Medium";
+    --ff-bold: "Poppins-Bold";
+    --ff-semi-bold: "Poppins-SemiBold";
+    --ff-black: "Poppins-Black";
+    --ff-regular2: "Audiowide-Regular";
 }
