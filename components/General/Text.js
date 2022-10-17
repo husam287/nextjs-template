@@ -14,7 +14,8 @@ const Text = ({
     children,
     fontFamily = FontFamily.regular,
     fontSize = 12,
-    color = Colors.primary
+    color = Colors.primary,
+    isTranslated = true
 }) => {
     const { t } = useTranslation(["common"]);
 
@@ -31,7 +32,11 @@ const Text = ({
             style={style}
             className={className}
         >
-            {t(String(children))}
+            {isTranslated ?
+                t(String(children))
+                :
+                children
+            }
         </Typography>
     );
 }
