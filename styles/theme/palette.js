@@ -1,17 +1,19 @@
-import { Colors } from "../../constants/Colors";
+import COLORS from 'constants/Colors';
 
-export const Palette = {
-    primary: {
-        main: Colors.primary,
-    },
-    secondary: {
-        main: Colors.secondary,
-    },
-    info: {
-        main: Colors.grey,
-    },
-    background: {
-        default: Colors.light,
-        paper: Colors.light
-    }
-}
+const Palette = {
+  primary: {
+    main: COLORS.primary,
+  },
+  secondary: {
+    main: COLORS.secondary,
+  },
+  info: {
+    main: COLORS.grey,
+  },
+  background: {
+    default: COLORS.light,
+    paper: COLORS.light,
+  },
+};
+
+export default Palette;

@@ -1,9 +1,9 @@
-import { getAxiosInstance } from "apis/AxiosConfig";
+import getAxiosInstance from 'apis/AxiosConfig';
 
-export class ProductServices {
+export default class ProductServices {
   /**
-   * 
-   * @param {'ar'|'en'} locale 
+   *
+   * @param {'ar'|'en'} locale
    * @param {Object} values
    * @param {string} values.brand brand slugs separated by commas
    * @param {string} values.color
@@ -18,17 +18,17 @@ export class ProductServices {
    * @returns {Promise<{count:Number, results:any[]}>}
    */
   static getProducts(locale, values) {
-    return getAxiosInstance(locale).get(`/products/`, {
-      params: values
-    })
+    return getAxiosInstance(locale).get('/products/', {
+      params: values,
+    });
   }
 
   /**
-   * 
-   * @param {'ar'|'en'} locale 
-   * @returns 
+   *
+   * @param {'ar'|'en'} locale
+   * @returns
    */
   static getCategories(locale) {
-    return getAxiosInstance(locale).get(`/categories/`);
+    return getAxiosInstance(locale).get('/categories/');
   }
 }

@@ -1,8 +1,9 @@
-import { store } from "../redux";
-import { logout } from "../redux/authReducer";
+import store from '../reducers';
+import { logout } from '../reducers/authReducer';
 
+const logoutHandler = async () => {
+  localStorage.removeItem('token');
+  store.dispatch(logout());
+};
 
-export const logoutHandler = async () => {
-    localStorage.removeItem("token");
-    store.dispatch(logout())
-}
+export default logoutHandler;

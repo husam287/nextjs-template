@@ -1,59 +1,64 @@
-import axios from "axios";
-import DomainUrl from "./Domain";
-//import { store } from "../redux/store";
-//import { hideLoader, showLoader } from "../redux/actions/AppActions";
+import axios from 'axios';
+import store from 'reducers';
+import { hideLoader, showLoader } from 'reducers/appReducer';
+import DomainUrl from './Domain';
 
-export const getAxiosInstance = (locale) => {
-  let language = locale
+const getAxiosInstance = (locale) => {
+  let language = locale;
   if (!language) {
-    if (typeof window !== "undefined") {
-      const storedLang = localStorage.getItem("lang");
-      language = storedLang
-    }
-    else
-      language = 'en'
+    if (typeof window !== 'undefined') {
+      const storedLang = localStorage.getItem('lang');
+      language = storedLang;
+    } else language = 'en';
   }
 
-  const _axios = axios.create({
+  const axiosInstance = axios.create({
     baseURL: `${DomainUrl}/${language}/api`,
     headers: {
-      "content-type": "application/json",
-      "Accept": "application/json",
-    }
-  })
+      'content-type': 'application/json',
+      Accept: 'application/json',
+    },
+  });
 
-  _axios.interceptors.request.use(
+  axiosInstance.interceptors.request.use(
     async (config) => {
-      //store.dispatch(showLoader())
+      store.dispatch(showLoader());
+      let newConfig = config;
 
       /** Adding token */
-      if (typeof window !== "undefined") {
-        const token = localStorage.getItem("token");
-        if (token)
-          config.headers = {
-            Authorization: `Token ${token}`,
-            ...config.headers,
-          }
+      if (typeof window !== 'undefined') {
+        const token = localStorage.getItem('token');
+        const newHeaders = {
+          Authorization: `Token ${token}`,
+          ...config.headers,
+        };
+
+        if (token) {
+          newConfig = {
+            ...config,
+            headers: newHeaders,
+          };
+        }
       }
 
-      return config;
+      return newConfig;
     },
-    (err) => {
-      //store.dispatch(hideLoader())
-      return Promise.reject(err?.response?.data);
-    }
-  )
+    (err) => Promise.reject(err?.response?.data),
+  );
 
-  _axios.interceptors.response.use(
+  axiosInstance.interceptors.response.use(
     (response) => {
-      // store.dispatch(hideLoader())
+      store.dispatch(hideLoader());
       return response.data;
     },
     (err) => {
-      // store.dispatch(hideLoader())
+      store.dispatch(hideLoader());
       if (err?.response?.data) return Promise.reject(err?.response?.data);
-    }
-  )
+      return null;
+    },
+  );
 
-  return _axios
-}
+  return axiosInstance;
+};
+
+export default getAxiosInstance;

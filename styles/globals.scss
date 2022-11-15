@@ -2,11 +2,14 @@
 @import './variables/fonts';
 @import './variables/colors';
 
-
 * {
   font-family: var(--ff-regular);
 }
 
 .pointer {
+  cursor: pointer;
+}
+
+.hos {
   cursor: pointer;
 }

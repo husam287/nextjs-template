@@ -3,14 +3,14 @@
  * @typedef {{access:string, refresh:string}} TokenObj
  */
 
-import { getAxiosInstance } from "apis/AxiosConfig";
+import getAxiosInstance from 'apis/AxiosConfig';
 
 const nonUserHeader = {
   headers: {
     Authorization: undefined,
   },
-}
-export class AuthServices {
+};
+export default class AuthServices {
   /**
    * @param {'ar'|'en'} locale
    * @param {Object} values
@@ -19,7 +19,7 @@ export class AuthServices {
    * @returns {Promise<TokenObj>}
    */
   static login(locale, values) {
-    return getAxiosInstance(locale).post(`/users/login/`, values);
+    return getAxiosInstance(locale).post('/users/login/', values);
   }
 
   /**
@@ -33,7 +33,7 @@ export class AuthServices {
    * @returns {Promise<TokenObj>}
    */
   static EditProfile(locale, values) {
-    return getAxiosInstance(locale).put(`/users/me/`, values);
+    return getAxiosInstance(locale).put('/users/me/', values);
   }
 
   /**
@@ -50,7 +50,6 @@ export class AuthServices {
    * @returns {Promise<TokenObj>}
    */
   static signup(locale, values) {
-    return getAxiosInstance(locale).post(`/users/me/`, values, nonUserHeader);
+    return getAxiosInstance(locale).post('/users/me/', values, nonUserHeader);
   }
-
 }
