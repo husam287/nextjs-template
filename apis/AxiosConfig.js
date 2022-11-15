@@ -29,10 +29,11 @@ export const getAxiosInstance = (locale) => {
       /** Adding token */
       if (typeof window !== "undefined") {
         const token = localStorage.getItem("token");
-        config.headers = {
-          Authorization: token ? `Token ${token}` : undefined,
-          ...config.headers,
-        }
+        if (token)
+          config.headers = {
+            Authorization: `Token ${token}`,
+            ...config.headers,
+          }
       }
 
       return config;
